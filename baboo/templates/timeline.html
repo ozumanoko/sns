@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>{{ user.name }}のタイムライン</h1>
+
+    <ul>
+        {% for baboo in data[::-1] %}
+            <li>
+                <h2>{{ baboo.name }}</h2>
+                {{ baboo.text }}<br>
+                {% if user.name == baboo.name %}
+                    <a href="{{ url_for('write_remove', data_id=baboo.id) }}">取り消す</a>
+                {% endif %}
+            </li>
+        {% else %}
+            <li><em>バブって、産声を上げよう</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

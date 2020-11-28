@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+    <dl>
+        <dt>ユーザー名:</dt>
+        <dd>{{ session.user_name }}</dd>
+        <dt>Email:</dt>
+        <dd>{{ session.user_email }}</dd>
+    </dl>
+
+    <div>
+        <ul>
+            <li><a href="{{ url_for('user_edit') }}">edit</a></li>
+<!--
+            <li><a href="#"
+                   class="user-delete-link"
+                   data-delete-url="{{ url_for('user_delete') }}">アカウント消去</a></li>
+-->
+            <li><a href="{{ url_for('user_delete') }}">アカウント消去</a></li>
+        </ul>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h2>{{ '設定' if user else '新規登録' }}</h2>
+    <form action="" method="post">
+        <dl>
+            <dt>name:</dt>
+            <dd><input type="text" size="20" name="name" value="{{ user.name if user }}"></dd>
+            <dt>email:</dt>
+            <dd><input type="email" size="20" name="email" value="{{ user.email if user }}"></dd>
+            <dt>password{{ '(変更しないときは空白で)' if user }}:</dt>
+            <dd><input type="password" size="20" name="password" value=""></dd>
+            <dd><input type="submit" value="{{ '変更' if user else '新規登録' }}"></dd>
+        </dl>
+    </form>
+{% endblock %}

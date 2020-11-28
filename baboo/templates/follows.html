@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h2>{{ session.user_name }}のフォロー一覧</h2>
+    <ul>
+        {% for other in others %}
+            <li>
+                <a href="{{ url_for('user_baboo', user_name=other.name) }}">{{ other.name }}</a>
+            </li>
+        {% else %}
+            <li><em>フォローしている人はいないよ</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
