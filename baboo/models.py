@@ -8,7 +8,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), default='', nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
+    #email = db.Column(db.String(100), unique=True, nullable=False)
     _password = db.Column('password', db.String(100), nullable=False)
 
     def _get_password(self):
@@ -27,14 +27,14 @@ class User(db.Model):
         return check_password_hash(self.password, password)
 
     @classmethod
-    def authenticate(cls, query, email, password):
-        user = query(cls).filter(cls.email==email).first()
+    def authenticate(cls, query, name, password):
+        user = query(cls).filter(cls.name==name).first()
         if user is None:
             return None, False
         return user, user.check_password(password)
 
     def __repr__(self):
-        return u'<User id={self.id} email={self.email!r} name={self.name}>'.format(
+        return u'<User id={self.id} name={self.name}>'.format(
             self=self
         )
 

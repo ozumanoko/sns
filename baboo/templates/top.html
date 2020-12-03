@@ -1,8 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
     <div class="mx-auto" style="width: auto">
-        <h3 class="text-center">あなたは赤ちゃんですか?</h3>
-        <button type="button" class="btn btn-light">ばぶぅー!!</button>
-        <button type="button" class="btn btn-light">はい、そうです</button>
+        <div class="col text-center">
+            <h3>あなたは1歳未満ですか？</h3>
+            <a href="{{ url_for('sign_in') }}">
+                <button type="button" class="btn btn-light">はい</button>
+            </a>
+            <a href="https://ja.wikipedia.org/wiki/%E7%89%B9%E5%88%A5:%E3%81%8A%E3%81%BE%E3%81%8B%E3%81%9B%E8%A1%A8%E7%A4%BA">
+                <button type="button" class="btn btn-light">いいえ</button>
+            </a>
+        </div>
+        <p class="text-center">アカウントをお持ちの方は<a href="{{ url_for('login') }}">ログイン</a>へ</p>
     </div>
 {% endblock %}

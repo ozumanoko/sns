@@ -18,6 +18,9 @@
         </a>
         {% if session.user_id %}
             <div class="text-light" align="right">ログインユーザー：{{ session.user_name }}</div>
+            <div class="float-right">
+                <a class="btn btn-light" href="{{ url_for('write') }}">バブる!</a>
+            </div>
         {% endif %}
 
         <button class="navbar-toggler" type="button"
@@ -38,7 +41,6 @@
                     <a class="nav-item nav-link" href="{{ url_for('timeline')}}">タイムライン</a>
                     <a class="nav-item nav-link" href="{{ url_for('user_baboo', user_name=session.user_name) }}">ユーザーページ</a>
                     <a class="nav-item nav-link" href="{{ url_for('user_detail') }}">設定</a>
-                    <a class="nav-item nav-link" href="{{ url_for('write') }}">バブる!</a>
                     <a class="nav-item nav-link" href="{{ url_for('follows') }}">フォローユーザー</a>
                     <a class="nav-item nav-link" href="{{ url_for('followers') }}">フォロワーユーザー</a>
                 {% else %}
@@ -53,20 +55,15 @@
     </nav>
 
 
+    {% for message in get_flashed_messages() %}
+        <div class="container-fluid">
+            <div class="alert alert-primary">
+                <div class="flash">{{ message }}</div>
+            </div>
+        </div>
+    {% endfor %}
 
-        {% for message in get_flashed_messages() %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
-
-
-
-
-
-
-
-
-        {% block body %}{% endblock %}
-    </div>
+    {% block body %}{% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

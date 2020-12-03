@@ -1,10 +1,13 @@
  {% extends "layout.html" %}
  {% block body %}
-     <form action="" method="post">
+     <form class="form-group" action="" method="post">
         <dl>
             <dt>ばぶる？</dt>
-            <dd><textarea type="text" rows="5" cols="20" name="text"></textarea></dd>
-            <dd><input type="submit" value="baboo"></dd>
+            <dd>
+                <textarea type="text" rows="5" cols="20" name="text"
+                          class="form-control"></textarea>
+            </dd>
+            <dd><input type="submit" value="バブる!" class="form-control"></dd>
         </dl>
     </form>
  {% endblock %}

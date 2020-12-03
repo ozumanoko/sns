@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
-    <h2>{{ other.name }}のbaboo</h2>
+    <h2 class="text-center">{{ other.name }}のbaboo</h2>
 
     {% if other.id == session.user_id or not (session.user_id) %}
     {% elif other.id in follow_list %}
@@ -9,16 +9,18 @@
         <a href="{{ url_for('follow_add', user_name=other.name) }}">フォロー</a>
     {% endif %}
     <div>
-        <ul>
+        <ul class="list-group text-center">
             {% for baboo in other_baboo %}
-                <li>
+                <li class="list-group-item">
                     <h2>{{ baboo.name }}</h2>{{ baboo.text|safe }}<br>
                     {% if session.user_name == baboo.name %}
                         <a href="{{ url_for('write_remove', data_id=baboo.id) }}">取り消す</a>
                     {% endif %}
                 </li>
             {% else %}
-                <li><em>not baboo</em>></li>
+                <li>
+                    <em>上の「バブる!」から投稿して、産声を上げよう</em>
+                </li>
             {% endfor %}
         </ul>
     </div>

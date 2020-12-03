@@ -1,15 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
     <div class="mx-auto" style="width: auto">
-        <h2 class="text-center">ログイン</h2>
-        <form action="{{ url_for('login') }}" method="post">
-            <dl>
-                <dt>Email</dt>
-                <dd><input type="text" name="email"></dd>
-                <dt>password</dt>
-                <dd><input type="password" name="password"></dd>
-                <dd><input type="submit" value="login"></dd>
-            </dl>
-        </form>
+        <div class="col text-center">
+            <h2 class="text-center">ログイン</h2>
+            <form action="{{ url_for('login') }}" method="post">
+                <dl>
+                    <dt>name</dt>
+                    <dd><input type="text" name="name"></dd>
+                    <dt>password</dt>
+                    <dd><input type="password" name="password"></dd>
+                    <dd><input type="submit" value="login"></dd>
+                </dl>
+            </form>
+        </div>
     </div>
 {% endblock %}

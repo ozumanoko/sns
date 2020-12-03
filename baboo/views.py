@@ -38,13 +38,12 @@ def top():
 def login():
     if request.method == 'POST':
         user, authenticated = User.authenticate(db.session.query,
-                                                request.form['email'],
+                                                request.form['name'],
                                                 request.form['password']
                                                 )
         if authenticated:
             session['user_id'] = user.id
             session['user_name'] = user.name
-            session['user_email'] = user.email
             flash('ログインしたよ')
             return redirect(url_for('timeline'))
         else:
@@ -56,7 +55,6 @@ def login():
 def logout():
     session.pop('user_id', None)
     session.pop('user_name', None)
-    session.pop('user_email', None)
     flash('ログアウトしたよ')
     return redirect(url_for('top'))
 
@@ -66,7 +64,6 @@ def sign_in():
     if request.method == 'POST':
         user = User(
             name=request.form['name'],
-            email=request.form['email'],
             password=request.form['password']
         )
         db.session.add(user)
@@ -119,8 +116,7 @@ def user_edit():
     user = User.query.get(session['user_id'])
     if request.method == 'POST':
         user.name = request.form['name']
-        user.email = request.form['email']
-        flash('名前とEmailアドレスを変更したよ')
+        flash('名前を変更したよ')
         ps = request.form['password'].strip()
         if ps:
             user.password = ps
@@ -166,7 +162,6 @@ def user_delete():
     db.session.commit()
     session.pop('user_id', None)
     session.pop('user_name', None)
-    session.pop('user_email', None)
     flash('アカウントを消去しました')
     return redirect(url_for('top'))
 
@@ -177,7 +172,7 @@ def follows():
     follow = Follow.query.filter_by(follower_id=session['user_id'])
     others = []
     for other in follow:
-        if other.id == session['user_id']:
+        if other.follow_id == session['user_id']:
             continue
         user = User.query.filter_by(id=other.follow_id).first()
         others.append(user)
@@ -190,7 +185,7 @@ def followers():
     follower = Follow.query.filter_by(follow_id=session['user_id'])
     others = []
     for other in follower:
-        if other.id == session['user_id']:
+        if other.follower_id == session['user_id']:
             continue
         user = User.query.filter_by(id=other.follower_id).first()
         others.append(user)

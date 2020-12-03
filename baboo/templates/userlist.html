@@ -1,11 +1,15 @@
 {% extends 'layout.html' %}
 {% block body %}
-    <h2>userlist</h2>
-    <ul>
+    <h2 class="text-center">ユーザーリスト</h2>
+    <ul class="text-center list-group-flush">
         {% for other in others %}
-            <li><a href="{{ url_for('user_baboo', user_name=other.name) }}">{{ other.name }}</a></li>
+            <li class="list-group-item">
+                <a href="{{ url_for('user_baboo', user_name=other.name) }}">
+                    <h3>{{ other.name }}</h3>
+                </a>
+            </li>
         {% else %}
-            <li><em>no user</em></li>
+            <li>赤ちゃんがいないよ。50年後の日本みたいだね。</li>
         {% endfor %}
     </ul>
 {% endblock %}
