@@ -4,10 +4,10 @@
     <ul>
         {% for other in others %}
             <li>
+            <li><em>フォロワーがいません</em></li>
                 <a href="{{ url_for('user_baboo', user_name=other.name) }}">{{ other.name }}</a>
             </li>
         {% else %}
-            <li><em>フォロワーはいないよ(´;ω;｀)</em></li>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -7,7 +7,7 @@
                 <a href="{{ url_for('user_baboo', user_name=other.name) }}">{{ other.name }}</a>
             </li>
         {% else %}
-            <li><em>フォローしている人はいないよ</em></li>
+            <li><em>フォローしている人はいません</em></li>
         {% endfor %}
     </ul>
 {% endblock %}
